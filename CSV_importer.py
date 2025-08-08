@@ -52,40 +52,22 @@ def load_transactions(file_path):
             description = str(row['Posting Date'])
             
             print(f"Description: {description[:50]}...")
-            
+
             # Categorize based on description content
-            if 'UBER' in description:
+            if 'UBER' in description or 'MBTA' in description:
                 category = 'Transportation'
-            elif 'DOORDASH' in description or 'DD *DOORDASH' in description:
-                category = 'Food Delivery'
-            elif any(x in description for x in ['MCDONALD', 'CHIPOTLE', 'DUNKIN']):
-                category = 'Fast Food'
-            elif any(x in description for x in ['CVS', 'PHARMACY']):
-                category = 'Pharmacy'
+            elif any(x in description for x in ['DOORDASH', 'DD *DOORDASH', 'MCDONALD', 'CHIPOTLE', 'DUNKIN', 'TASTY BURGER', 'RAMEN', 'SAPPORO', 'CURRY', 'PIZZA', 'BURGER', 'IHOP', 'JAMAICA', 'SHANGHAI FRESH']):
+                category = 'Food & Dining'
+            elif any(x in description for x in ['H MART', 'STAR OSCO', 'TARGET', '7-ELEVEN', 'CVS', 'PHARMACY']):
+                category = 'Groceries'
             elif 'ATM' in description and ('WITHDRAWAL' in description or 'DEBIT' in description):
                 category = 'ATM Withdrawal'
-            elif any(x in description for x in ['H MART', 'STAR OSCO', 'TARGET']):
-                category = 'Groceries'
             elif any(x in description for x in ['HALSTED', 'TD BANK']) and 'PAYMENT' in description:
                 category = 'Loan Payment'
-            elif 'SMOKE SHOP' in description:
-                category = 'Tobacco'
-            elif any(x in description for x in ['RAMEN', 'SAPPORO', 'CURRY', 'PIZZA', 'BURGER', 'IHOP', 'JAMAICA']):
-                category = 'Restaurant'
             elif 'APPLE CASH' in description:
                 category = 'Money Transfer'
-            elif 'MBTA' in description:
-                category = 'Transportation'
             elif 'FEE' in description:
                 category = 'Bank Fees'
-            elif 'PARCHMENT' in description:
-                category = 'Education/Documents'
-            elif 'TASTY BURGER' in description:
-                category = 'Fast Food'
-            elif '7-ELEVEN' in description:
-                category = 'Convenience Store'
-            elif 'SHANGHAI FRESH' in description:
-                category = 'Restaurant'
             else:
                 category = 'Other'
             
