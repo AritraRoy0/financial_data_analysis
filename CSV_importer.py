@@ -62,7 +62,7 @@ def load_transactions(file_path):
                 category = 'Groceries'
             elif 'ATM' in description and ('WITHDRAWAL' in description or 'DEBIT' in description):
                 category = 'ATM Withdrawal'
-            elif any(x in description for x in ['HALSTED', 'TD BANK']) and 'PAYMENT' in description:
+            elif any(x in description for x in ['HALSTED', 'TD BANK', 'LAW']) and 'PAYMENT' in description:
                 category = 'Loan Payment'
             elif 'APPLE CASH' in description:
                 category = 'Money Transfer'
